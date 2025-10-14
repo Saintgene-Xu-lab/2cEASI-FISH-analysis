@@ -1,0 +1,36 @@
+[Files]
+dataFileName=Y:\Users\XSJ\Matlab Prog\FISH\AIRLOCALIZE\examples\3DsmFISH_humCells.tif
+saveDirName=Y:\Users\XSJ\Matlab Prog\FISH\AIRLOCALIZE\examples\
+fileProcessingMode=singleFile
+inclusionString=
+recursive=0
+
+[detectionSettings]
+psfSigma=1.1782, 2.1407
+threshUnits=legacySD
+threshLevel=5
+maxSpots=100
+fitMethod=3DMaskFull
+
+[userInput]
+setPsfInteractively=0
+setThreshInteractively=0
+movieFrameUsedToSetParameters=1
+outputSpotsImage=1
+autoSpotSize=1
+spotSize=1.8541, 1.8541
+autoSpotIntensity=1
+spotIntensity=100
+
+[advanced]
+minDistBetweenSpots=2
+filterLo=4
+filterHi=1
+fittedRegionSize=3
+tol=0.01
+bgRegionThickness=1
+psfType=integratedGaussian
+maxIterations=100
+bgCorrectionMode=localPlane
+useLegacyFormats=0
+
