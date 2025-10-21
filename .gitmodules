@@ -1,0 +1,3 @@
+[submodule "2cEASI-FISH/Step2_SpotDetection/AIRLOCALIZE"]
+	path = 2cEASI-FISH/Step2_SpotDetection/AIRLOCALIZE
+	url = https://github.com/timotheelionnet/AIRLOCALIZE.git
