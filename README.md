@@ -38,13 +38,13 @@ mRNA puncta are assigned based on dual-color colocalization (≤660 nm), with am
 Normalized expression of Gene *i* in Neuron *j* was calculated as:
 
 $$
- G_{norm}(i,j) = \frac{G_{raw}(i,j)}{V_j\times{Avg\_Eef2\_Nbhd}}
+ G_{norm}(i,j) = \frac{G_{raw}(i,j)}{V_j\times {Avg\underline{~}Eef2\underline{~}Nbhd}}
 $$
 
 where:
 - $G_{\text{raw}}(i,j)$ is the raw puncta count of Gene *i* in Neuron *j*,
 - $V_j$ is the volume of Neuron *j*,
-- ${Avg\_Eef2\_Nbhd}$ is the average *Eef2* puncta count in a local neighborhood (56 μm × 56 μm × 11 μm) within the same tissue slice as Neuron *j*.
+- *Avg_Eef2_Nbhd* is the average *Eef2* puncta count in a local neighborhood (56 μm × 56 μm × 11 μm) within the same tissue slice as Neuron *j*.
 
 *RNA_cluster.R* performs Seurat-based clustering of 2cEASI-FISH data. Key parameters are configured as follows:
 | Sample| Cluster_para| Umap_para| NormalizeData | ScaleData|
