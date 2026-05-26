@@ -1,21 +1,29 @@
 # 2cEASI-FISH-analysis
+
+Copyright [2026] [saintgene]
+
 2cEASI-FISH was developed to integrate multimodal data from individual cortical projection neurons. The pipeline starts with raw light-sheet microscopy images and processes them for downstream analysis.
+
 
 This image processing pipeline includes the following steps:
 ![Pipeline_overview](figures/pipeline_image.png)
 ## Step 0: Split Channels
+
 - Use *SplitChannels.py* to split 4D microscopy images (C, Z, Y, X) into individual 3D channel volumes.
 > **Channel 1**: cytoDAPI; **Channel 2**: 488nm; **Channel 3**: 546nm; **Channel 4**: 649nm
 
 ## Step 1: Cell Segmentation
+
 - Cell and nucleus masks are generated from cytoDAPI (Channel 1) using *CellSegmentation.py* （a downsampled **Cellpose** (cyto2) segmentation (https://github.com/MouseLand/cellpose)）
 - followed by manual label alignment and quality-controlled correction where necessary. 
 
 ## Step 2: Spot Detection
+
 - In addition to Channel 1, puncta in other channels (488 nm, 546 nm, and 649 nm) are detected using **AIRLOCALIZE** (https://github.com/timotheelionnet/AIRLOCALIZE/) for channel-specific spot identification.
 - Batch processing of images is performed using *Batch_AL.m* and the configuration file *Pars.ini*. 
 - *vis* can helps to visualize puncta
 ## Step 3: Affine Registration
+
 - To align multi-channel imaging data (e.g., 488 nm and 647 nm channels) to a common reference channel (546 nm), we used ANTs(Advanced Normalization Tools)(https://github.com/ANTsX/ANTs)(*antsRegistration*) with translation and affine transformations.
 - Submit the job using slurm
 ```{shell}
@@ -26,15 +34,18 @@ sbatch ./Step3_AffineRegistration/Affine_Reg_v2.sh
 > **Note** Steps 1–3 can be parallelized to accelerate processing.
 
 ## Step 4: Channel Alignment
+
 - Use *Batch_SpotLocsTrans_AdaptThresh.m* to apply transformation matrix in the 3D detected spot coordinates
 - ouput:*_ch1_Z7_AlignCh.csv*,*_ch2_Z7_AlignCh.csv*,*_ch3_Z7_AlignCh.csv*
 
 ## Step 5: mRNA Calling
+
 mRNA puncta are assigned based on dual-color colocalization (≤660 nm), with ambiguous cases resolved by 3D overlap optimization and triple-channel colocalized signals excluded as autofluorescence.
 - Use *Batch_Vis_Spots_7Color_50x_AdaptThresh.m* to generate *xx_lbCode_All.tif* for mRNA Calling
 - Use *Batch_Extract_FISH_GeneExp_CoLoc_2Ch.m* to assign gene puncta
 
 ## Step 6: Normalization and Downstream Analysis
+
 Normalized expression of Gene *i* in Neuron *j* was calculated as:
 
 $$
