@@ -1,6 +1,8 @@
 # 2cEASI-FISH-analysis
 
-Copyright [2026] [saintgene]
+```
+Copyright 2026, saintgene
+```
 
 2cEASI-FISH was developed to integrate multimodal data from individual cortical projection neurons. The pipeline starts with raw light-sheet microscopy images and processes them for downstream analysis.
 
